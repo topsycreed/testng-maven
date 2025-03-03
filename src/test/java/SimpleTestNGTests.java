@@ -3,19 +3,21 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 
+import static org.testng.Assert.assertEquals;
+
 public class SimpleTestNGTests {
     @Test(description = "Этот тест проверяет сумму двух чисел")
     public void simpleTestNGTest() {
         int actualSum = 2 + 2;
         int expectedSum = 4;
-        Assert.assertEquals(actualSum, expectedSum);
+        assertEquals(actualSum, expectedSum);
     }
 
     @Test(enabled = false) // Тест не будет запущен, в отчет попадет как ignored
     public void disabledTest() {
         int actualSum = 2 + 2;
         int expectedSum = 4;
-        Assert.assertEquals(actualSum, expectedSum);
+        assertEquals(actualSum, expectedSum);
         System.out.println("Test");
     }
 
@@ -25,14 +27,14 @@ public class SimpleTestNGTests {
         Thread.sleep(1000);
         int actualSum = 2 + 2;
         int expectedSum = 4;
-        Assert.assertEquals(actualSum, expectedSum);
+        assertEquals(actualSum, expectedSum);
     }
 
     @Test(invocationCount = 3) // Аналог RepeatedTest
     public void repeatedTest() {
         int actualSum = 2 + 2;
         int expectedSum = 4;
-        Assert.assertEquals(actualSum, expectedSum);
+        assertEquals(actualSum, expectedSum);
     }
 
     @Test(invocationCount = 5, invocationTimeOut = 3000)
@@ -55,7 +57,7 @@ public class SimpleTestNGTests {
             test.length();
             Assert.fail("Ожидалось исключение NullPointerException");
         } catch (NullPointerException e) {
-            Assert.assertEquals(e.getMessage(), "Cannot invoke \"String.length()\" because \"test\" is null");
+            assertEquals(e.getMessage(), "Cannot invoke \"String.length()\" because \"test\" is null");
         }
     }
 
