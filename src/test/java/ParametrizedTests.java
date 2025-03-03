@@ -1,6 +1,7 @@
 import dto.User;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
+import testdata.MyDataProvider;
 
 import java.util.List;
 
@@ -10,7 +11,7 @@ public class ParametrizedTests {
         System.out.println("Тест с параметром: " + value);
     }
 
-    @Test(dataProvider = "customName")
+    @Test(dataProvider = "customName", dataProviderClass = MyDataProvider.class)
     public void dataProviderComplexTest(List<Integer> list, String test, Double number, Boolean value, User user) {
         System.out.printf("Тест с параметрами: %s, %s, %s, %s, %s", list, test, number, value, user);
     }
@@ -18,13 +19,5 @@ public class ParametrizedTests {
     @DataProvider
     public Object[][] dataMethod() {
         return new Object[][]{{1}, {2}, {3}};
-    }
-
-    @DataProvider(name = "customName")
-    public Object[][] complexDataMethod() {
-        return new Object[][]{
-                {List.of(1), "Test", 1.0, true, new User("name", "lastname", 10)},
-                {List.of(2), "Test3", 2.0, false, new User("name2", "lastname2", 20)}
-        };
     }
 }
