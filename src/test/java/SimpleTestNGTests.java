@@ -67,6 +67,15 @@ public class SimpleTestNGTests {
         test.length();
     }
 
+    @Test()
+    public void assertThrowsWithMessageTest() {
+        String test = null;
+
+        Exception exception = Assert.expectThrows(NullPointerException.class, () -> test.length());
+
+        Assert.assertEquals(exception.getMessage(), "Cannot invoke \"String.length()\" because \"test\" is null");
+    }
+
     @Test
     public void assertsAllTest() {
         SoftAssert softAssert = new SoftAssert();
