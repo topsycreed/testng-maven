@@ -113,7 +113,7 @@ mvn clean test
             <version>3.0.0-M5</version>
             <configuration>
                 <suiteXmlFiles>
-                    <suiteXmlFile>src/test/resources/${suite}.xml</suiteXmlFile>
+                    <suiteXmlFile>src/test/resources/suites/${suite}.xml</suiteXmlFile>
                 </suiteXmlFiles>
             </configuration>
         </plugin>
@@ -126,9 +126,18 @@ mvn test -Dsuite=regression
 ```
 
 ## 5. Генерация отчетов Allure
+Allure по умолчанию сохраняет результаты тестов в корневой директории проекта. Однако рекомендуется хранить результаты тестов в директории вывода сборки.
+Чтобы настроить это, создайте файл allure.properties и поместите его в директорию ресурсов тестов вашего проекта, которая обычно находится по пути src/test/resources.
+Добавьте туда следующий код:
+```java
+allure.results.directory=target/allure-results
+```
+
 Запустите команду для генерации отчета:
 ```bash
-allure serve
+allure serve target/allure-results
 ```
 Эта команда откроет отчет Allure в вашем браузере. Нужно находиться в папке, которая содержит allure-results.
 
+## Полезные ссылки
+https://allurereport.org/docs/testng/
